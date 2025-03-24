@@ -92,4 +92,4 @@ Este proyecto está bajo la licencia MIT.
 🌟 Créditos
 Creado por blackars. Inspirado en el arte conceptual minimalista y el diseño interactivo.
 
-¡Gracias por explorar y experimentar con TouchConcepts#1-3D-web-experience! 🎮✨ ```
+¡Gracias por explorar y experimentar con TouchConcepts1-3DWebExperience! 🎮✨ ```
