@@ -1,0 +1,65 @@
+.chat-modal-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: flex-end;
+  padding-bottom: 60px; /* Increased padding to move the modal up */
+  pointer-events: all;
+  /* Posicionamiento centrado en la parte inferior */
+  position: fixed; 
+  bottom: 0; /* Espacio desde abajo */
+  left: 50%; /* Centro horizontal */
+  transform: translateX(-50%); /* Ajuste para centrado perfecto */
+  z-index: 1000;
+  font-weight: bold; /* Added bold text */
+}
+
+.chat-modal-container {
+  background: rgba(255, 255, 255, 0.95); 
+  color: #000000;
+  padding: 20px;
+  border-radius: 0px;
+  border: 3px solid #000000;
+  min-width: 300px;
+  max-width: 500px;
+  font-family: sans-serif;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: monospace;
+  
+}
+
+.chat-modal-content {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+  padding: 10px;
+}
+
+.chat-modal-next {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #fefefe;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.chat-modal-next:hover {
+  background: #bebaba;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+  

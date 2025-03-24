@@ -1,11 +1,345 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import StartPage from '../components/IntroWarning';
+import Scene from '../components/Scene';
+import Scene2 from '../components/Scene2';
+import Scene3 from '../components/Scene3';
+import Scene4 from '../components/Scene4';
+import Scene5 from '../components/Scene5';
+import Scene6 from '../components/Scene6';
+import Scene7 from '../components/Scene7';
+import BackgroundMusic from '../components/BackgroundMusic';
 ---
 
 <Layout>
-	<Welcome />
+	<BackgroundMusic client:load />
+
+    <div id="app-container">
+        <StartPage client:load />
+        <div id="scene-container" class="scene-wrapper">
+            <Scene client:only="solid-js" />
+        </div>
+        <div id="scene2-container" class="scene-wrapper">
+            <Scene2 client:only="solid-js" />
+        </div>
+        <div id="scene3-container" class="scene-wrapper">
+            <Scene3 client:only="solid-js" />
+        </div>
+        <div id="scene4-container" class="scene-wrapper">
+            <Scene4 client:only="solid-js" />
+        </div>
+        <div id="scene5-container" class="scene-wrapper">
+            <Scene5 client:only="solid-js" />
+        </div>
+        <div id="scene6-container" class="scene-wrapper">
+            <Scene6 client:only="solid-js" />
+        </div>
+        <div id="scene7-container" class="scene-wrapper"> 
+            <Scene7 client:only="solid-js" />
+        </div>
+    </div>
 </Layout>
+
+<script>
+    // Script para manejar el cambio entre escenas
+    document.addEventListener('DOMContentLoaded', () => {
+        //console.log("DOM completamente cargado");
+
+        // Manejar la transición inicial desde StartPage
+        window.addEventListener('startGame', () => {
+            //console.log("StartGame event received");
+            const sceneContainer = document.getElementById('scene-container');
+            
+            if (sceneContainer) {
+                sceneContainer.classList.add('active');
+                //console.log("Scene container activated");
+                
+                // Inicializar Scene inmediatamente
+                window.dispatchEvent(new CustomEvent('sceneActivated'));
+            }
+        });
+
+        // Declarar la propiedad changeToScene2 en el objeto window para TypeScript
+        interface CustomWindow extends Window {
+            changeToScene2?: boolean;
+        }
+        
+        // Declarar el tipo para el evento personalizado
+        interface SceneChangeEvent extends CustomEvent {
+            detail: {
+                nextScene: string;
+            };
+        }
+        
+        // Función para cambiar entre escenas
+        const switchToScene2 = () => {
+            //console.log("Ejecutando switchToScene2...");
+            const scene1Container = document.getElementById('scene-container');
+            const scene2Container = document.getElementById('scene2-container');
+            
+            if (scene1Container && scene2Container) {
+                // Remover y agregar clases en lugar de cambiar estilos directamente
+                scene1Container.classList.remove('active');
+                scene2Container.classList.add('active');
+                
+                // Forzar reflow para asegurar que el navegador recalcule los estilos
+                void scene2Container.offsetWidth;
+                
+                	//console.log('Cambiado visibilidad de contenedores - Scene1:', 
+                    //scene1Container.classList.contains('active'), 
+                    //'Scene2:', scene2Container.classList.contains('active'));
+                
+                // Disparar un evento que Scene2 puede escuchar para reinicializarse
+                window.dispatchEvent(new CustomEvent('scene2Activate'));
+            } else {
+                console.error("No se encontraron los contenedores de escena", {
+                    scene1: scene1Container, 
+                    scene2: scene2Container
+                });
+            }
+        };
+
+        const switchToScene3 = () => {
+            //console.log("Ejecutando switchToScene3...");
+            const scene2Container = document.getElementById('scene2-container');
+            const scene3Container = document.getElementById('scene3-container');
+            
+            if (scene2Container && scene3Container && !scene3Container.classList.contains('active')) {
+                scene2Container.classList.remove('active');
+                scene3Container.classList.add('active');
+                void scene3Container.offsetWidth; // Forzar reflow
+                //console.log('Cambiado visibilidad de contenedores - Scene2:', 
+                    //scene2Container.classList.contains('active'), 
+                    //'Scene3:', scene3Container.classList.contains('active'));
+                
+                // Disparar un evento que Scene3 puede escuchar para reinicializarse
+                window.dispatchEvent(new CustomEvent('scene3Activate'));
+            } else {
+                console.warn("No se realizó el cambio a Scene3 porque ya está activa o los contenedores no existen.", {
+                    scene2: scene2Container, 
+                    scene3: scene3Container
+                });
+            }
+        };
+
+        const switchToScene4 = () => {
+            //console.log("Ejecutando switchToScene4...");
+            const scene3Container = document.getElementById('scene3-container');
+            const scene4Container = document.getElementById('scene4-container');
+            
+            if (scene3Container && scene4Container) {
+                // Pre-activar Scene4 antes de la transición visual
+                window.dispatchEvent(new CustomEvent('scene4Activate'));
+                
+                // Pequeño delay para asegurar que Scene4 se inicialice
+                setTimeout(() => {
+                    scene3Container.classList.remove('active');
+                    scene4Container.classList.add('active');
+                    
+                    //console.log('Cambiado visibilidad de contenedores - Scene3:', 
+                        //scene3Container.classList.contains('active'), 
+                        //'Scene4:', scene4Container.classList.contains('active'));
+                }, 100);
+            }
+        };
+
+        const switchToScene5 = () => {
+            //console.log("Ejecutando switchToScene5...");
+            const scene4Container = document.getElementById('scene4-container');
+            const scene5Container = document.getElementById('scene5-container');
+            
+            if (scene4Container && scene5Container) {
+                // Pre-activar Scene5 antes de la transición visual
+                window.dispatchEvent(new CustomEvent('scene5Activate'));
+                
+                // Pequeño delay para asegurar que Scene5 se inicialice
+                setTimeout(() => {
+                    scene4Container.classList.remove('active');
+                    scene5Container.classList.add('active');
+                    
+                    //console.log('Cambiado visibilidad de contenedores - Scene4:', 
+                        //scene4Container.classList.contains('active'), 
+                        //'Scene5:', scene5Container.classList.contains('active'));
+                }, 100);
+            }
+        };
+
+        const switchToScene6 = () => {
+            //console.log("Ejecutando switchToScene6...");
+            const scene5Container = document.getElementById('scene5-container');
+            const scene6Container = document.getElementById('scene6-container');
+            
+            if (scene5Container && scene6Container) {
+                scene5Container.classList.remove('active');
+                scene6Container.classList.add('active');
+                void scene6Container.offsetWidth; // Forzar reflow
+                //console.log('Cambiado visibilidad de contenedores - Scene5:', 
+                    //scene5Container.classList.contains('active'), 
+                    //'Scene6:', scene6Container.classList.contains('active'));
+                
+                // Disparar eventos para activar/desactivar escenas
+                window.dispatchEvent(new CustomEvent('scene6Activate'));
+                window.dispatchEvent(new CustomEvent('scene5Deactivate'));
+            } else {
+                //console.error("No se encontraron los contenedores de escena", {
+                    //scene5: scene5Container, 
+                    //scene6: scene6Container
+                //});
+            }
+        };
+
+        const switchToScene7 = () => {
+            //console.log("Ejecutando switchToScene7...");
+            const scene6Container = document.getElementById('scene6-container');
+            const scene7Container = document.getElementById('scene7-container');
+            
+            if (scene6Container && scene7Container) {
+                scene6Container.classList.remove('active');
+                scene7Container.classList.add('active');
+                void scene7Container.offsetWidth; // Forzar reflow
+                //console.log('Cambiado visibilidad de contenedores - Scene6:', 
+                    //scene6Container.classList.contains('active'), 
+                    //'Scene7:', scene7Container.classList.contains('active'));
+                
+                // Disparar eventos para activar/desactivar escenas
+                window.dispatchEvent(new CustomEvent('scene7Activate'));
+                window.dispatchEvent(new CustomEvent('scene6Deactivate'));
+            } else {
+                //console.error("No se encontraron los contenedores de escena", {
+                  //  scene6: scene6Container, 
+                    //scene7: scene7Container
+                //});
+            }
+        };
+        
+        // Escuchar el evento personalizado
+        window.addEventListener('changeScene', ((e: Event) => {
+            //console.log("Evento 'changeScene' recibido");
+            const sceneEvent = e as CustomEvent;
+            if (sceneEvent.detail) {
+              //  console.log("Detalles del evento:", sceneEvent.detail);
+                if (sceneEvent.detail.nextScene === 'Scene1') {
+                  //  console.log("Iniciando primera escena");
+                    const startPage = document.querySelector('.start-page-container');
+                    const sceneContainer = document.getElementById('scene-container');
+                    
+                    if (startPage && sceneContainer) {
+                        startPage.classList.add('hidden');
+                        sceneContainer.classList.add('active');
+                    }
+                } else if (sceneEvent.detail.nextScene === 'Scene2') {
+                   // console.log("Cambiando a Scene2 por evento");
+                    switchToScene2();
+                } else if (sceneEvent.detail.nextScene === 'Scene3') {
+                   // console.log("Cambiando a Scene3 por evento");
+                    switchToScene3();
+                } else if (sceneEvent.detail.nextScene === 'Scene4') {
+                   // console.log("Cambiando a Scene4 por evento");
+                    switchToScene4();
+                } else if (sceneEvent.detail.nextScene === 'Scene5') {
+                   // console.log("Cambiando a Scene5 por evento");
+                    switchToScene5();
+                } else if (sceneEvent.detail.nextScene === 'Scene6') {
+                   // console.log("Cambiando a Scene6 por evento");
+                    switchToScene6();
+                } else if (sceneEvent.detail.nextScene === 'Scene7') {
+                   // console.log("Cambiando a Scene7 por evento");
+                    switchToScene7();
+                } else {
+                    console.warn("Escena desconocida en el evento:", sceneEvent.detail.nextScene);
+                }
+            } else {
+                console.warn("El evento 'changeScene' no contiene detalles");
+            }
+        }) as EventListener);
+
+        // También verificar periódicamente si se debe cambiar la escena
+        const checkScene = () => {
+            const customWindow = window as CustomWindow;
+            
+            if (customWindow.changeToScene2) {
+                //console.log("Cambiando a Scene2 por polling");
+                switchToScene2();
+                customWindow.changeToScene2 = false; // Resetear para evitar múltiples cambios
+                return; // No seguir verificando
+            }
+            // Seguir verificando cada 500ms
+            setTimeout(checkScene, 500);
+        };
+        
+        // Iniciar verificación
+        checkScene();
+    });
+</script>
+
+<style>	
+    #app-container {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .scene-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        visibility: hidden; // Cambiar display: none por visibility: hidden
+        opacity: 0;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .scene-wrapper.active {
+        visibility: visible; // Asegurar que sea visible
+        opacity: 1;
+        z-index: 1;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    :global(canvas) {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+    }
+
+    .start-page-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10;
+        transition: opacity 0.3s ease;
+    }
+
+    .start-page-container.fade-out {
+        animation: fadeOut 0.5s ease forwards;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            visibility: visible;
+        }
+        to {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    :global(.scene-container) {
+        width: 100vw !important;
+        height: 100vh !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+    }
+</style>

@@ -1,0 +1,39 @@
+.start-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: white;
+    text-align: center;
+    color: black;
+    font-family: monospace;
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+  
+  .warning-icon {
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    margin-bottom: 20px;
+  }
+  
+  .start-page-text {
+    margin-bottom: 30px;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 50px;  
+    background-color: rgba(238, 241, 245, 0);
+    margin-top: 20px;
+  }
+  
+  .back-button, .play-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 1em;
+    font-weight: 600;
+    background-color: rgb(250, 249, 247);
+  }
