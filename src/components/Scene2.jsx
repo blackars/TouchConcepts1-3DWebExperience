@@ -311,7 +311,7 @@ if (score >= 13 && !gifPlaneAdded) {
     
     // Crear un elemento video y configurarlo
     const video = document.createElement('video');
-    video.src = '/portal.mp4'; // Asegúrate de que la ruta sea correcta
+    video.src = '/portal.webm'; // Asegúrate de que la ruta sea correcta
     video.loop = true;
     video.muted = true;
     video.play(); // Reproducir el video

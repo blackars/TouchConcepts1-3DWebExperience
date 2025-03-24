@@ -45,7 +45,7 @@ const Scene3 = () => {
     // Crear el video y la textura
     const video = document.createElement('video');
     videoElement = video; // Guardar referencia al video
-    video.src = 'tunel.mp4'; // Removido el slash inicial
+    video.src = 'tunel.webm'; // Removido el slash inicial
     video.loop = true;
     video.muted = true;
     video.crossOrigin = 'anonymous'; // Añadir cross-origin
