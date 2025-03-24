@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/touchconcepts1/*"
+  to = "/touchconcepts1/:splat"
+  status = 200
