@@ -285,7 +285,7 @@ const Scene6 = () => {
       <video
         id="fullscreen-video"
         autoplay
-        src="/rd.mp4"
+        src="/rd.webm"
         loop
         muted
         style={{
