@@ -2,6 +2,9 @@
 
 **TouchConcepts1-3DWebExperience** is an interactive experience based on modern web technologies like **Three.js**, **Solid.js**, and **Astro**. This project combines 3D graphics, animations, and smooth transitions to create an immersive visual narrative.
 
+![TouchConcepts1](/components%20preview/Touchconcepts.gif)
+
+
 ## 🚀 Features
 
 - **3D Graphics**: Rendered with Three.js to create visually appealing scenes.
