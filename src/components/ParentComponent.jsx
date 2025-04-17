@@ -26,7 +26,7 @@ const ParentComponent = () => {
         <ChatModal 
           textChunks={[
             "Welcome to The Nothing.",
-            "Concepts changes in differents ways, trying to reach the perfect shapes.",
+            "Concepts change in differents ways, trying to reach the perfect shapes.",
             "Touch, feel and live the ideas into the void, the shadows of time."
           ]}
           onClose={handleClose}
