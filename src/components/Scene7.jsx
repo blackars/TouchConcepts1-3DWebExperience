@@ -93,6 +93,7 @@ const Scene7 = () => {
   // Efecto typewriter: se escribe el texto letra por letra en 3.5 segundos.
   const startTyping = () => {
     const fullText = `This experience was crafted using web technologies such as Three.js, Solid.js, and Astro to swiftly create a proof of concept for a minimal interactive visual piece. A initial box of ideas to experiment with art and design as well express my creativity through new media like TouchDesigner, the Adobe Suite and many tools.
+    Music track: "Do For Me" by KrippSoulisc.
 
 Feel free to explore more on my social media. Thank you for engaging and experimenting with me! ♡`;
     let index = 0;
